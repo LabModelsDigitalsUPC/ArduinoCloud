@@ -1,0 +1,78 @@
+@prefix : <http://example.org/ArduinoCloudIoT/#> .
+@prefix iot: <http://example.org/ArduinoCloudIoT/#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+iot: a owl:Ontology .
+
+### Classes ###
+iot:Thing a owl:Class ;
+    rdfs:label "Thing"@en ;
+    rdfs:comment "A virtual entity in Arduino Cloud representing code that runs on a Device and hosts Variables."@en .
+
+iot:Device a owl:Class ;
+    rdfs:label "Device"@en ;
+    rdfs:comment "A physical microcontroller on which a Thing is deployed."@en .
+
+iot:Variable a owl:Class ;
+    rdfs:label "Variable"@en ;
+    rdfs:comment "A measurable or controllable data point associated with a Thing."@en .
+
+### Object Properties ###
+iot:deployedOn a owl:ObjectProperty ;
+    rdfs:domain iot:Thing ;
+    rdfs:range iot:Device ;
+    a owl:FunctionalProperty ;
+    rdfs:label "deployedOn"@en ;
+    rdfs:comment "Links a Thing to the Device on which it is deployed."@en .
+
+iot:hosts a owl:ObjectProperty ;
+    rdfs:domain iot:Thing ;
+    rdfs:range iot:Variable ;
+    rdfs:label "hosts"@en ;
+    rdfs:comment "Indicates that a Thing hosts a Variable."@en .
+
+iot:sendsDataTo a owl:ObjectProperty ;
+    rdfs:domain <http://www.w3.org/ns/sosa/Sensor> ;
+    rdfs:range iot:Variable ;
+    rdfs:label "sendsDataTo"@en ;
+    rdfs:comment "Links a SOSA Sensor to the Variable it populates with data."@en .
+
+### Data Properties ###
+iot:thing_id a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain iot:Thing ;
+    rdfs:range xsd:string ;
+    rdfs:label "thing_id"@en ;
+    rdfs:comment "A unique identifier for a Thing."@en .
+
+iot:thing_name a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain iot:Thing ;
+    rdfs:range xsd:string ;
+    rdfs:label "thing_name"@en ;
+    rdfs:comment "A human-readable name for a Thing."@en .
+
+iot:device_id a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain iot:Device ;
+    rdfs:range xsd:string ;
+    rdfs:label "device_id"@en ;
+    rdfs:comment "A unique identifier for a Device."@en .
+
+iot:device_name a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain iot:Device ;
+    rdfs:range xsd:string ;
+    rdfs:label "device_name"@en ;
+    rdfs:comment "A human-readable name for a Device."@en .
+
+iot:variable_id a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain iot:Variable ;
+    rdfs:range xsd:string ;
+    rdfs:label "variable_id"@en ;
+    rdfs:comment "A unique identifier for a Variable."@en .
+
+iot:variable_name a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain iot:Variable ;
+    rdfs:range xsd:string ;
+    rdfs:label "variable_name"@en ;
+    rdfs:comment "A human-readable name for a Variable."@en .
